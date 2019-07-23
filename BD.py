@@ -14,11 +14,14 @@ scale = 500
 SecNo_CMM = 11
 SecNo_FEM = 32
 
+ax=np.zeros(4)
 CylNo = 4
 add='FEM_OD_WT'
 temp_FEM_OD_WT=np.zeros((124,2))
 # this part counts the number of step files in the add directory
 StepFileNo=len(fnmatch.filter(os.listdir(add), 'STEP*.txt'))
+
+
 
 for LinerNo in range (CylNo):
     
@@ -55,5 +58,9 @@ for LinerNo in range (CylNo):
     temp_FEM_OD_WT[:,0]=phi_polar
     temp_FEM_OD_WT[:,1]=dr_FEM_OD_WT*scale+39.3
     temp_FEM_OD_WT=temp_FEM_OD_WT[np.argsort(temp_FEM_OD_WT[:,0])]
-    
+    f2=plt.figure(1,figsize=(5,5))
+    f1=plt.figure(LinerNo,figsize=(5,5))
+#    ax=f1.add_subplot(4,1,LinerNo+1,projection='polar')
     plt.polar(temp_FEM_OD_WT[:,0],temp_FEM_OD_WT[:,1])
+    nameFig='FEM_Distortion_Bore'+str(LinerNo+1)+'.jpg'
+    plt.savefig(nameFig, dpi=100 )
