@@ -7,6 +7,7 @@ Created on Tue Jul 23 08:33:23 2019
 import os,fnmatch,sys,csv,pandas
 import numpy as np
 from numpy import linalg as LA
+import matplotlib.pyplot as plt
 scale = 500
 
 SecNo_CMM = 11
@@ -14,7 +15,7 @@ SecNo_FEM = 32
 
 CylNo = 4
 add='FEM_OD_WT'
-
+temp_FEM_OD_WT=np.zeros((124,2))
 # this part counts the number of step files in the add directory
 StepFileNo=len(fnmatch.filter(os.listdir(add), 'STEP*.txt'))
 for LinerNo in range (CylNo):
@@ -39,4 +40,7 @@ for LinerNo in range (CylNo):
     rpolar=np.sqrt(deformation_OD[:,0]**2+deformation_OD[:,1]**2)
     phi_polar=np.arctan2(deformation_OD[:,1],deformation_OD[:,0])
     dr_FEM_OD_WT=rpolar-39.3
-    
+    temp_FEM_OD_WT[:,0]=phi_polar
+    temp_FEM_OD_WT[:,1]=dr_FEM_OD_WT*scale+39.3
+    temp_FEM_OD_WT=temp_FEM_OD_WT[np.argsort(temp_FEM_OD_WT[:,0])]
+    plt.polar(temp_FEM_OD_WT[:,0],temp_FEM_OD_WT[:,1])
