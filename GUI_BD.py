@@ -6,7 +6,9 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 
 from matplotlib.figure import Figure
 
-
+import os,fnmatch,sys,csv,pandas
+import numpy as np
+from numpy import linalg as LA
 	
 Ui_MainWindow, QMainWindow = loadUiType('BDwindow.ui')
 
@@ -15,14 +17,22 @@ class Main(Ui_MainWindow,QMainWindow):
         super(Main,self).__init__()
         self.setupUi(self)
         self.fig_dict={}
+        
+        self.L1.itemClicked.connect(self.changefig)
+        
+    def changefig(self, item):
+        text=item.text()
+        self.rmmpl()
+        self.addmpl(self.fig_dict[text])
     
     def addmpl(self,fig):
         self.canvas=FigureCanvas(fig)
-        
         self.mplvl.addWidget(self.canvas)
         self.canvas.draw()
         self.toolbar=NavigationToolbar(self.canvas,self, coordinates=True)
         self.mplvl.addWidget(self.toolbar)
+        self.rmmpl()
+    
     def rmmpl(self,):
         self.mplvl.removeWidget(self.canvas)
         self.canvas.close()
@@ -33,29 +43,14 @@ class Main(Ui_MainWindow,QMainWindow):
         self.fig_dict[name]=fig
         self.L1.addItem(name)
         
-    def scale(self,):
-        self.lineEdit.text()
- 
-if __name__=='__main__':
-    import sys 
-    from PyQt5 import QtGui
-    import numpy as np
     
-    #fig1=Figure()
-    #ax1f1=fig1.add_subplot(121, projection='polar')
-    #ax1f1.plot(np.random.rand(5))
+def plotfunc(scale):
     
+    #main.rmmpl()
     
-    app = QApplication(sys.argv)
-    main = Main()
-
-    ##################################################
-    import os,fnmatch,sys,csv,pandas
-    import numpy as np
-    from numpy import linalg as LA
-    #import matplotlib.pyplot as plt
-
-
+    scale = main.lineEdit.text()
+    scale=np.int(scale) 
+    
     SecNo_CMM = 11
     SecNo_FEM = 32
 
@@ -66,12 +61,13 @@ if __name__=='__main__':
     # this part counts the number of step files in the add directory
     StepFileNo=len(fnmatch.filter(os.listdir(add), 'STEP*.txt'))
 
-
-
+    fig={}
+    ax1f1={}
+    
     for LinerNo in range (CylNo):
         
-        scale = main.lineEdit.text()
-        scale=np.int(scale)
+        
+
         
         displacement_names_FEM='STEP1LINER0'+str(LinerNo+1)+'SEC'+str(32)+'.txt'
         displacement_add="C:\\Users\\student\\Desktop\\BD\\FEM_OD_WT\\"+displacement_names_FEM
@@ -107,27 +103,43 @@ if __name__=='__main__':
         temp_FEM_OD_WT[:,1]=dr_FEM_OD_WT*scale+39.3
         temp_FEM_OD_WT=temp_FEM_OD_WT[np.argsort(temp_FEM_OD_WT[:,0])]
         
-        fig1=Figure()
-        ax1f1=fig1.add_subplot(111, projection='polar')
-        ax1f1.plot(temp_FEM_OD_WT[:,0],temp_FEM_OD_WT[:,1], label='CylNO'+str(LinerNo+1))
-        ax1f1.legend()
         
-        cylName='CylNO'+str(LinerNo+1)
-        main.addmpl(fig1)
-        main.addfig(cylName,fig1)
-        main.show()
-        input()
-        main.rmmpl()
+        fig[LinerNo+1]=Figure()
+        ax1f1[LinerNo+1]=fig[LinerNo+1].add_subplot(111, projection='polar')
+        ax1f1[LinerNo+1].plot(temp_FEM_OD_WT[:,0],temp_FEM_OD_WT[:,1], label='CylNO'+str(LinerNo+1))
+        ax1f1[LinerNo+1].legend()
         
+        main.addmpl(fig[LinerNo+1])
+        # main.rmmpl()
+        
+    
+    main.L1.clear()    
+    main.addfig('Cylinder No 1',fig[1])
+    main.addfig('Cylinder No 2',fig[2])
+    main.addfig('Cylinder No 3',fig[3])
+    main.addfig('Cylinder No 4',fig[4])
+     
+if __name__=='__main__':
+    import sys 
+    from PyQt5 import QtGui
+    import numpy as np
+    
 
+    app = QApplication(sys.argv)
+    main = Main()
+
+    
     ##################################################
     
-    #main = Main()
-    #main.addmpl(fig1)
-    #main.show()
+    main.show()
+
+    scale = main.lineEdit.text()
+    scale=np.int(scale)          
     
-    #input()
+
+
+    main.B_FEM.clicked.connect(lambda: plotfunc(scale))
+    ##################################################
     
-    #main.rmmpl()
-    #main.addmpl(
+    
     sys.exit(app.exec_())
