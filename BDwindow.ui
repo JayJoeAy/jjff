@@ -59,9 +59,12 @@
      <rect>
       <x>80</x>
       <y>240</y>
-      <width>113</width>
+      <width>51</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>500</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">

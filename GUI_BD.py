@@ -14,6 +14,7 @@ class Main(Ui_MainWindow,QMainWindow):
     def __init__(self, ):
         super(Main,self).__init__()
         self.setupUi(self)
+        self.fig_dict={}
     
     def addmpl(self,fig):
         self.canvas=FigureCanvas(fig)
@@ -27,6 +28,13 @@ class Main(Ui_MainWindow,QMainWindow):
         self.canvas.close()
         self.mplvl.removeWidget(self.toolbar)
         self.toolbar.close()
+        
+    def addfig(self,name,fig):
+        self.fig_dict[name]=fig
+        self.L1.addItem(name)
+        
+    def scale(self,):
+        self.lineEdit.text()
  
 if __name__=='__main__':
     import sys 
@@ -46,7 +54,7 @@ if __name__=='__main__':
     import numpy as np
     from numpy import linalg as LA
     #import matplotlib.pyplot as plt
-    scale = 500
+
 
     SecNo_CMM = 11
     SecNo_FEM = 32
@@ -61,6 +69,9 @@ if __name__=='__main__':
 
 
     for LinerNo in range (CylNo):
+        
+        scale = main.lineEdit.text()
+        scale=np.int(scale)
         
         displacement_names_FEM='STEP1LINER0'+str(LinerNo+1)+'SEC'+str(32)+'.txt'
         displacement_add="C:\\Users\\student\\Desktop\\BD\\FEM_OD_WT\\"+displacement_names_FEM
@@ -101,7 +112,9 @@ if __name__=='__main__':
         ax1f1.plot(temp_FEM_OD_WT[:,0],temp_FEM_OD_WT[:,1], label='CylNO'+str(LinerNo+1))
         ax1f1.legend()
         
+        cylName='CylNO'+str(LinerNo+1)
         main.addmpl(fig1)
+        main.addfig(cylName,fig1)
         main.show()
         input()
         main.rmmpl()
