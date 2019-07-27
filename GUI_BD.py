@@ -17,22 +17,29 @@ class Main(Ui_MainWindow,QMainWindow):
     
     def addmpl(self,fig):
         self.canvas=FigureCanvas(fig)
+        
         self.mplvl.addWidget(self.canvas)
         self.canvas.draw()
- 
+        self.toolbar=NavigationToolbar(self.canvas,self, coordinates=True)
+        self.mplvl.addWidget(self.toolbar)
+    def rmmpl(self,):
+        self.mplvl.removeWidget(self.canvas)
+        self.canvas.close()
+        self.mplvl.removeWidget(self.toolbar)
+        self.toolbar.close()
  
 if __name__=='__main__':
     import sys 
     from PyQt5 import QtGui
     import numpy as np
     
-    fig1=Figure()
-    ax1f1=fig1.add_subplot(111, projection='polar')
+    #fig1=Figure()
+    #ax1f1=fig1.add_subplot(121, projection='polar')
     #ax1f1.plot(np.random.rand(5))
     
     
     app = QApplication(sys.argv)
-    
+    main = Main()
 
     ##################################################
     import os,fnmatch,sys,csv,pandas
@@ -88,14 +95,26 @@ if __name__=='__main__':
         temp_FEM_OD_WT[:,0]=phi_polar
         temp_FEM_OD_WT[:,1]=dr_FEM_OD_WT*scale+39.3
         temp_FEM_OD_WT=temp_FEM_OD_WT[np.argsort(temp_FEM_OD_WT[:,0])]
-    #    f2=plt.figure(1,figsize=(5,5))
-    #    matplotlib.axes.Axes.set_xlim=axis(option='equal')
-        #f1=plt.figure(LinerNo,figsize=(5,5))
+        
+        fig1=Figure()
+        ax1f1=fig1.add_subplot(111, projection='polar')
         ax1f1.plot(temp_FEM_OD_WT[:,0],temp_FEM_OD_WT[:,1], label='CylNO'+str(LinerNo+1))
         ax1f1.legend()
+        
+        main.addmpl(fig1)
+        main.show()
+        input()
+        main.rmmpl()
+        
+
     ##################################################
-    main = Main()
-    main.addmpl(fig1)
     
-    main.show()
+    #main = Main()
+    #main.addmpl(fig1)
+    #main.show()
+    
+    #input()
+    
+    #main.rmmpl()
+    #main.addmpl(
     sys.exit(app.exec_())

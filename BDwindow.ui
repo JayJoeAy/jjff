@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1111</width>
+    <height>803</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>230</y>
+      <y>280</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -27,13 +27,13 @@
      <string>F E M</string>
     </property>
    </widget>
-   <widget class="QWidget" name="pltWid" native="true">
+   <widget class="QWidget" name="pltWid_0" native="true">
     <property name="geometry">
      <rect>
       <x>300</x>
       <y>30</y>
-      <width>461</width>
-      <height>501</height>
+      <width>791</width>
+      <height>711</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -54,13 +54,36 @@
      </rect>
     </property>
    </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>240</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>240</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Scale</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1111</width>
      <height>21</height>
     </rect>
    </property>
