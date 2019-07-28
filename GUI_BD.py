@@ -43,13 +43,12 @@ class Main(Ui_MainWindow,QMainWindow):
         self.fig_dict[name]=fig
         self.L1.addItem(name)
         
-def FEMImport():
-    main.FEMAdd.setText(str(QFileDialog.getExistingDirectory()))
-    addr=main.FEMAdd.text()
-    addr=addr.replace("/","//")
-    main.addr=str(addr)
-    # plotfunc(addr)
-    # return addr
+
+def importFile():
+    adr=QFileDialog.getExistingDirectory()
+    adr=str(adr)
+    adr=adr.replace("/","//")
+    main.adr=str(adr)
     
 def plotfunc():
     
@@ -79,8 +78,8 @@ def plotfunc():
 
         
         displacement_names_FEM='STEP1LINER0'+str(LinerNo+1)+'SEC'+str(SecNo_FEM)+'.txt'
-        displacement_add=main.addr+"//"+displacement_names_FEM
-        NodeAdd=main.addr+"//nodes.txt"
+        displacement_add=main.adr+"//"+displacement_names_FEM
+        NodeAdd=main.adr+"//nodes.txt"
         
         # Datas for the Node array
         nodes_FEM_OD_WT=pandas.read_csv(NodeAdd, header=None)
@@ -143,8 +142,8 @@ if __name__=='__main__':
             
     main.show() 
     
-    addr=main.openButt.clicked.connect(lambda : FEMImport())
-    main.addr = None
+    # This button is used to open file directory
+    main.actionOpen.triggered.connect(lambda : importFile())
     main.B_FEM.clicked.connect(lambda : plotfunc())
     main.ExitButt.clicked.connect(QApplication.instance().quit)
     
