@@ -10,7 +10,10 @@ class Main(Ui_MainWindow,QMainWindow):
         super(Main,self).__init__()
         self.setupUi(self)
 def select():
-    main.L1.setText(str(QFileDialog.getOpenFileName()[0]))
+# this part opens the directory selection box
+    main.L1.setText(str(QFileDialog.getExistingDirectory()))
+    # this part opens a specefic file
+    # main.L1.setText(str(QFileDialog.getOpenFileName()))    
     addr=main.L1.text()
     addressParse(addr)
     return addr
