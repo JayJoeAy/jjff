@@ -10,11 +10,15 @@ class Main(Ui_MainWindow,QMainWindow):
         super(Main,self).__init__()
         self.setupUi(self)
 def select():
-    main.L1.setText(str(QFileDialog.getOpenFileName()))
+    main.L1.setText(str(QFileDialog.getOpenFileName()[0]))
     addr=main.L1.text()
-    main.lbl1.setText(addr)
-    # return addr
-
+    addressParse(addr)
+    return addr
+    
+    
+def addressParse(addr):
+    main.lbl1.setText(str(addr))
+    
 if __name__=='__main__':
     from PyQt5 import QtGui
     import sys 
@@ -26,13 +30,12 @@ if __name__=='__main__':
 
     
     ##################################################
-    
+    main.B1.clicked.connect(select)
     main.show()         
     
     
     
-    main.B1.clicked.connect(select)
-    main.lbl1.setText(select())
+
     ##################################################
     
     
