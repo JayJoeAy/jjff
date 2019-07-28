@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1111</width>
-    <height>803</height>
+    <width>841</width>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>IPCO-BoreDistortion</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="B_FEM">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>280</y>
+      <y>320</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -47,24 +47,30 @@
    <widget class="QListWidget" name="L1">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>70</x>
+      <y>70</y>
       <width>101</width>
       <height>101</height>
      </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>110</x>
       <y>240</y>
-      <width>51</width>
+      <width>41</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>500</string>
+     <string>1000</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -72,9 +78,14 @@
      <rect>
       <x>20</x>
       <y>240</y>
-      <width>47</width>
-      <height>13</height>
+      <width>71</width>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Scale</string>
@@ -83,8 +94,8 @@
    <widget class="QPushButton" name="ExitButt">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>330</y>
+      <x>120</x>
+      <y>320</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -93,13 +104,106 @@
      <string>Exit</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cylinder Number</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="FEM_sec">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>280</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Section</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>380</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Import FEM</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="openButt">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>410</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Import</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="FEMAdd">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1111</width>
+     <width>841</width>
      <height>21</height>
     </rect>
    </property>

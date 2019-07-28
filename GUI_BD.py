@@ -1,5 +1,5 @@
 from PyQt5.uic import loadUiType
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
+from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QMainWindow, QTextEdit, QAction, QFileDialog
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
@@ -43,17 +43,26 @@ class Main(Ui_MainWindow,QMainWindow):
         self.fig_dict[name]=fig
         self.L1.addItem(name)
         
+def FEMImport():
+    main.FEMAdd.setText(str(QFileDialog.getExistingDirectory()))
+    addr=main.FEMAdd.text()
+    addr=addr.replace("/","//")
+    main.addr=str(addr)
+    # plotfunc(addr)
+    # return addr
     
-def plotfunc(scale):
+def plotfunc():
     
-    #main.rmmpl()
     
     scale = main.lineEdit.text()
     scale=np.int(scale) 
     
-    SecNo_CMM = 11
-    SecNo_FEM = 32
-
+    SecNo_CMM =11 
+    SecNo_FEM = main.FEM_sec.text()
+    SecNo_FEM=np.int(SecNo_FEM)
+    if SecNo_FEM<10:
+        SecNo_FEM = '0' + str(SecNo_FEM)
+    
     ax=np.zeros(4)
     CylNo = 4
     add='FEM_OD_WT'
@@ -69,9 +78,9 @@ def plotfunc(scale):
         
 
         
-        displacement_names_FEM='STEP1LINER0'+str(LinerNo+1)+'SEC'+str(32)+'.txt'
-        displacement_add="C:\\Users\\student\\Desktop\\BD\\FEM_OD_WT\\"+displacement_names_FEM
-        NodeAdd="C:\\Users\\student\\Desktop\\BD\\FEM_OD_WT\\nodes.txt"
+        displacement_names_FEM='STEP1LINER0'+str(LinerNo+1)+'SEC'+str(SecNo_FEM)+'.txt'
+        displacement_add=main.addr+"//"+displacement_names_FEM
+        NodeAdd=main.addr+"//nodes.txt"
         
         # Datas for the Node array
         nodes_FEM_OD_WT=pandas.read_csv(NodeAdd, header=None)
@@ -110,7 +119,6 @@ def plotfunc(scale):
         ax1f1[LinerNo+1].legend()
         
         main.addmpl(fig[LinerNo+1])
-        # main.rmmpl()
         
     
     main.L1.clear()    
@@ -119,6 +127,7 @@ def plotfunc(scale):
     main.addfig('Cylinder No 3',fig[3])
     main.addfig('Cylinder No 4',fig[4])
      
+    
 if __name__=='__main__':
     import sys 
     from PyQt5 import QtGui
@@ -131,14 +140,15 @@ if __name__=='__main__':
     
     ##################################################
     
-    main.show()
-
-    scale = main.lineEdit.text()
-    scale=np.int(scale)          
+            
+    main.show() 
     
-
-
-    main.B_FEM.clicked.connect(lambda: plotfunc(scale))
+    addr=main.openButt.clicked.connect(lambda : FEMImport())
+    main.addr = None
+    main.B_FEM.clicked.connect(lambda : plotfunc())
+    main.ExitButt.clicked.connect(QApplication.instance().quit)
+    
+    
     ##################################################
     
     
