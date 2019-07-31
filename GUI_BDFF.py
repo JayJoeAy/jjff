@@ -1,5 +1,5 @@
 from PyQt5.uic import loadUiType
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QMainWindow, QTextEdit, QAction, QFileDialog
+from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QMainWindow, QTextEdit, QAction, QFileDialog, QTableWidget,QTableWidgetItem
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
@@ -144,7 +144,16 @@ def plotfunc():
     main.addfig('Cylinder No 2',fig[2])
     main.addfig('Cylinder No 3',fig[3])
     main.addfig('Cylinder No 4',fig[4])
-    print(FEM_Fourier_Coef[2])
+    
+    main.table1.setRowCount(4)
+    main.table1.setColumnCount(4)
+    
+    for ind,item in FEM_Fourier_Coef.items():
+        main.table1.setItem(ind-1, 0, QTableWidgetItem(str(item[ind-1,0])))
+        main.table1.setItem(ind-1, 1, QTableWidgetItem(str(item[ind-1,1])))
+        main.table1.setItem(ind-1, 2, QTableWidgetItem(str(item[ind-1,2])))
+        main.table1.setItem(ind-1, 3, QTableWidgetItem(str(item[ind-1,3])))
+        
     
 def plotDis() :
     for i in range(4):
