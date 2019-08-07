@@ -58,8 +58,12 @@ def importFile():
     # main.chk1.setVisible(True)
     # main.chk1.setChecked(True)
 
-
-    
+def sectNumber():
+    SectionNumber=main.SectNo_line.text()
+    s=open('sectNumber.txt','w')
+    s.write(str(SectionNumber))
+    s.close()
+    os.system('abaqus cae noGui=ReadingDistortion.py')
 def plotfunc():
     
 
@@ -176,6 +180,7 @@ if __name__=='__main__':
     # action menu bar is used to import FEM datat file.
     main.actionOpen.triggered.connect(lambda : importFile())
     # main.chk1.stateChanged.connect(lambda : plotDis())
+    main.SectNO_done.clicked.connect(lambda : sectNumber())
     main.B_FEM.clicked.connect(lambda : plotfunc())
     main.ExitButt.clicked.connect(QApplication.instance().quit)
     

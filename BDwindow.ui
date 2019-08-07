@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>869</width>
-    <height>666</height>
+    <width>1045</width>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    <widget class="QPushButton" name="B_FEM">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>110</x>
       <y>320</y>
       <width>75</width>
       <height>23</height>
@@ -47,10 +47,10 @@
    <widget class="QWidget" name="pltWid_0" native="true">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>30</y>
-      <width>791</width>
-      <height>711</height>
+      <x>360</x>
+      <y>10</y>
+      <width>561</width>
+      <height>551</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -83,7 +83,7 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>160</x>
       <y>240</y>
       <width>41</width>
       <height>20</height>
@@ -118,7 +118,7 @@
    <widget class="QPushButton" name="ExitButt">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>200</x>
       <y>320</y>
       <width>75</width>
       <height>23</height>
@@ -150,7 +150,7 @@
    <widget class="QLineEdit" name="FEM_sec">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>160</x>
       <y>280</y>
       <width>41</width>
       <height>20</height>
@@ -208,7 +208,7 @@
      <rect>
       <x>20</x>
       <y>400</y>
-      <width>311</width>
+      <width>251</width>
       <height>192</height>
      </rect>
     </property>
@@ -219,13 +219,61 @@
      <enum>Qt::SolidLine</enum>
     </property>
    </widget>
+   <widget class="QLineEdit" name="SectNo_line">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>200</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>40</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Narrow</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Section No</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SectNO_done">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Section</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>869</width>
+     <width>1045</width>
      <height>21</height>
     </rect>
    </property>
