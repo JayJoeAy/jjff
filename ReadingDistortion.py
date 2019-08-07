@@ -1,6 +1,7 @@
 from abaqus import *
 from odbAccess import *
 import numpy as np
+import shutil
 s=open('sectNumber.txt','r')
 section_no_tot=int(s.read())
 s.close()
@@ -43,7 +44,12 @@ nodeSets=instance.nodeSets
            # '21','22','23','24', '25', '26', '27', '28', '29', '30']
 liner_no_tot=4
 # section_no_tot=30
-
+directory='new/'
+if os.path.exists(directory):
+    shutil.rmtree(directory)
+    os.makedirs(directory)
+else :
+    os.makedirs(directory)
 f=open('new/'+'nodes.txt','w')
 for h in range(step_no):
     step_name=steps_key[h]
